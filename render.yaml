@@ -1,0 +1,30 @@
+services:
+  - type: web
+    name: auto-caption-bot
+    runtime: docker
+    env: python
+    build:
+      dockerfile: Dockerfile
+    envVars:
+      - key: API_ID
+        value: your_telegram_api_id
+      - key: API_HASH
+        value: your_telegram_api_hash
+      - key: BOT_TOKEN
+        value: your_bot_token
+      - key: CHANNEL_ID
+        value: your_channel_id
+      - key: DATABASE_URL
+        fromDatabase:
+          name: caption_db
+          property: connectionString
+      - key: CAPTION_TEMPLATE
+        value: |
+          🎬 {title} ({year})
+          🌟 {quality} | {resolution} | {duration}
+          📁 {filename} | 📦 {filesize}
+          {wish}! Enjoy your content!
+
+databases:
+  - name: caption_db
+    plan: free
