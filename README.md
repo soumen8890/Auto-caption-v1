@@ -1,60 +1,39 @@
-# Telegram Auto Caption Bot 🤖
+Here's the Telegram Bot Command section you can add to your `README.md`:
 
-Automatically adds formatted captions to files in your Telegram channel using metadata extracted from filenames and file properties.
+## Bot Commands 🤖
 
-## Features ✨
+### Admin Commands (for channel owners)
+| Command | Description | Example |
+|---------|-------------|---------|
+| `/setcaption <template>` | Set custom caption template | `/setcaption {title} [{year}] - {quality}` |
+| `/getcaption` | Show current caption template | `/getcaption` |
+| `/stats` | Show bot statistics | `/stats` |
+| `/export` | Export caption database | `/export` |
+| `/restart` | Restart the bot (admin only) | `/restart` |
 
-- Supports all media types (videos, audio, documents)
-- Extracts metadata from filenames
-- Customizable caption templates
-- PostgreSQL database integration
-- Time-based greetings
-- Deployable to Render.com
+### User Commands
+| Command | Description | Example |
+|---------|-------------|---------|
+| `/variables` | List all available caption variables | `/variables` |
+| `/preview` | Preview how caption will look | `/preview Movie.Name.2023.1080p.mp4` |
+| `/help` | Show help message | `/help` |
 
-## Variables Available 📝
+### How to Use Commands
+1. Add the bot to your channel as admin
+2. Use commands in channel or private chat with bot
+3. For template commands, use the available variables
 
-| Variable       | Description                          | Example                |
-|----------------|--------------------------------------|------------------------|
-| `{filename}`   | Original filename                   | `Movie.Name.2023.mp4` |
-| `{filesize}`   | Human-readable file size            | `1.45 GB`             |
-| `{caption}`    | Existing file caption               |                        |
-| `{language}`   | Language from filename              | `ENG`                 |
-| `{year}`       | Year from filename                  | `2023`                |
-| `{quality}`    | Quality from filename               | `1080p`               |
-| `{season}`     | Season number                       | `S02`                 |
-| `{episode}`    | Episode number                      | `E05`                 |
-| `{duration}`   | Video duration                      | `1:45:23`             |
-| `{height}`     | Video height in pixels              | `1080`                |
-| `{width}`      | Video width in pixels               | `1920`                |
-| `{ext}`        | File extension                      | `MP4`                 |
-| `{resolution}` | Video resolution                    | `1920x1080`           |
-| `{mime_type}`  | File MIME type                      | `video/mp4`           |
-| `{title}`      | Audio title                         | `Song Name`           |
-| `{artist}`     | Audio artist                        | `Artist Name`         |
-| `{wish}`       | Time-based greeting                 | `Good Evening`        |
-
-## Deployment 🚀
-
-### Prerequisites
-
-- Python 3.9+
-- Telegram API credentials
-- Render.com account
-- PostgreSQL database
-
-### 1. Local Development
-
+Example of setting a custom template:
 ```bash
-# Clone the repository
-git clone https://github.com/yourusername/auto-caption-bot.git
-cd auto-caption-bot
+/setcaption 🎬 {title} ({year})
+🌟 {quality} | {resolution} 
+⏰ {duration} | 📁 {filesize}
+{wish}! Enjoy your content!
+```
 
-# Install dependencies
-pip install -r requirements.txt
+### Automatic Functionality
+- Automatically processes all new media in channel
+- No command needed for auto-captioning
+- Edits existing captions if template changes
 
-# Set up environment variables
-cp .env.example .env
-# Edit .env with your credentials
-
-# Run the bot
-python bot.py
+Note: Admin commands require bot admin privileges in your channel.
